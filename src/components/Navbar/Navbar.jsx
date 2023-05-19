@@ -2,7 +2,7 @@ import React from 'react'
 import { FaShopware } from "react-icons/fa";
 import { GrCart } from "react-icons/gr";
 import NavList from './NavList';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 
 const Navbar = () => {
@@ -41,6 +41,13 @@ const Navbar = () => {
             Search
           </button>
         </div>
+
+        {/* {Login/Signup} */}
+        <NavLink to={"/register"}>
+          <button className=" bg-black text-white hover:bg-violet-500 px-3 py-2 rounded-2xl">
+            Sign Up
+          </button>
+        </NavLink>
       </div>
     </div>
   );
