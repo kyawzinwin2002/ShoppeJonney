@@ -1,46 +1,61 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import Navbar from '../components/Navbar/Navbar';
-import CartChild from '../components/CartChild';
 import { Link } from 'react-router-dom';
 import { FaShopware } from 'react-icons/fa';
+import CartChild from '../components/Cart/CartChild';
+import Payment from '../components/Cart/Payment';
+import { BsCart4 } from "react-icons/bs";
 
 const Cart = () => {
   const cart = useSelector(state => state.productSlice.cart)
+  console.log(cart);
+  if(cart?.length === 0){
+    return (
+      <div>
+        <Navbar />
+        <div className=" flex py-9 px-9 w-screen h-screen  items-start">
+          <div className=" w-[60%] h-screen overflow-scroll pb-10  px-3">
+            <div className="flex w-[100%] h-screen justify-center ">
+              <div className=" flex flex-col items-center gap-5 mt-56">
+                <h1 className=" flex items-center gap-4 text-4xl font-semibold text-violet-500">
+                  <BsCart4/> Your cart is empty!
+                </h1>
+                <Link to={"/shop"}>
+                  <button className=" rounded-xl px-5 py-1 text-lg bg-gray-600 text-white">
+                    Shopping Now
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          <div className=" w-[40%] flex justify-center items-start fixed right-0 top-20">
+            {/* {CheckOut} */}
+            <Payment />
+          </div>
+        </div>
+      </div>
+    );
+  }
   return (
     <div>
       <Navbar />
       <div className=" flex py-9 px-9 w-screen h-screen  items-start">
         <div className=" w-[60%] h-screen overflow-scroll pb-10  px-3">
-          <div className=" flex flex-col gap-10 items-center ">
+          <div className=" flex flex-col gap-16 items-center ">
             {/* {Cart} */}
             {cart?.map((item) => {
               return <CartChild key={item?.id} {...item} />;
             })}
           </div>
+         
+          
         </div>
 
         <div className=" w-[40%] flex justify-center items-start fixed right-0 top-20">
           {/* {CheckOut} */}
-          <div className=" w-[90%] flex flex-col gap-3 h-[500px] border-2 border-gray-300 p-5">
-            {/* {Headers} */}
-            <div className=" flex items-center justify-between">
-              <Link to={"/"}>
-                <div className="flex items-center gap-2">
-                  <FaShopware className=" text-3xl font-bold text-violet-500" />
-                  <h1 className=" text-3xl font-bold text-violet-500">
-                    Shoppe
-                  </h1>
-                </div>
-              </Link>
-              <h1 className=' text-2xl font-semibold '>CheckOut</h1>
-            </div>
-
-            <hr />
-
-            {/* {Body} */}
-            
-          </div>
+          <Payment />
         </div>
       </div>
     </div>

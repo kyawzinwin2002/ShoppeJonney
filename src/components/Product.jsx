@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ADD_TO_CART, ADD_TO_FAVORITE, REMOVE_FROM_CART, REMOVE_FROM_FAVORITE } from "../redux/services/productSlice";
 
 const Product = (props) => {
-  const { id,title, image, description, price } = props;
+  const { id,title, image, price,rating } = props;
   const dispatch = useDispatch()
 
   // {Cart}
@@ -32,6 +32,19 @@ const Product = (props) => {
     dispatch(REMOVE_FROM_FAVORITE(props))
   }
 
+  // const starGenerator = (rate) => {
+  //   let star=""
+  //   for(let i=1;i=5; i++){
+  //     if(rate<=5){
+  //       star = "*"
+  //     }else{
+  //       star= "-"
+  //     }
+  //   }
+  //   return star
+  // }
+
+  // const ratings = starGenerator(rating.rate);
   return (
     <div className="  flex flex-col gap-3 shadow-md  px-5 py-3">
       <img
@@ -42,7 +55,7 @@ const Product = (props) => {
       <h1 className=" text-xl text-gray-900 ">{title.substring(0, 15)}...</h1>
 
       <div className=" flex justify-between items-center">
-        <span>*****</span>
+        {/* <span>{ratings}</span> */}
         <p>${price}</p>
       </div>
       <div className=" flex justify-end gap-3">

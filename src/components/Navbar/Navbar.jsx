@@ -72,7 +72,7 @@ const Navbar = () => {
 
         {/* {Login/Signup} */}
         <NavLink to={"/register"}>
-          <button className=" bg-black text-white hover:bg-violet-500 px-3 py-2 rounded-2xl">
+          <button className=" bg-black text-white hover:bg-violet-500 px-5 py-2 rounded-2xl">
             Sign Up
           </button>
         </NavLink>
