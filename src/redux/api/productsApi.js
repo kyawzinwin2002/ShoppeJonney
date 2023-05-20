@@ -14,10 +14,10 @@ export const productsApi = createApi({
     getSingleProduct: builder.query({
       query: (id) => ({
         url: `https://fakestoreapi.com/products/${id}`,
-        
       }),
       providesTags: ["productsApi"],
     }),
+    
   }),
 });
 

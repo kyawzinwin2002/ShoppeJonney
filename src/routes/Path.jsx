@@ -7,6 +7,7 @@ import Favorite from '../pages/Favorite';
 import Register from '../pages/Register';
 import Login from '../pages/Login';
 import Shop from '../pages/Shop';
+import Search from '../pages/Search';
 
 const Path = () => {
   return (
@@ -19,6 +20,7 @@ const Path = () => {
         <Route path="/favorite" element={<Favorite />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/search" element={<Search />} />
       </Routes>
     </div>
   );
