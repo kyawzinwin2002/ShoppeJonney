@@ -1,11 +1,16 @@
 import React from 'react'
 import { FaShopware } from 'react-icons/fa';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Swal from "sweetalert2";
+import { REMOVE_ALL_CART } from '../../redux/services/productSlice';
+
+
 
 const Payment = () => {
   const mainTotal = useSelector(state => state.productSlice.mainTotal)
+  const dispatch = useDispatch();
+
   // console.log(mainTotal);
   const calcTax= (total,tax=5) => {
     return(
@@ -41,52 +46,69 @@ const Payment = () => {
 
       {/* {Body} */}
       <div className=" flex justify-between">
-        <span className=" text-xl font-semibold text-gray-500">SubTotal</span>
-        <span className="text-base text-gray-800 font-bold">
+        <span className=" text-xl font-semibold text-gray-500 dark:text-white">
+          SubTotal
+        </span>
+        <span className="text-base text-gray-800 font-bold dark:text-white">
           ${mainTotal.toFixed(2)}
         </span>
       </div>
       <div className=" flex justify-between">
-        <span className=" text-xl font-semibold text-gray-500">Tax</span>
-        <span className="text-base text-gray-800 font-bold">
+        <span className=" text-xl font-semibold text-gray-500 dark:text-white">
+          Tax
+        </span>
+        <span className="text-base text-gray-800 font-bold dark:text-white">
           ${Tax.toFixed(2)}
         </span>
       </div>
       <hr />
       <div className=" flex justify-between">
-        <span className=" text-xl font-semibold text-gray-500">Total</span>
-        <span className="text-base text-gray-800 font-bold">
+        <span className=" text-xl font-semibold text-gray-500 dark:text-white">
+          Total
+        </span>
+        <span className="text-base text-gray-800 font-bold dark:text-white">
           ${Total.toFixed(2)}
         </span>
       </div>
       <hr />
       {/* {CheckOut Info} */}
-      <h1 className=" text-2xl text-gray-700 font-semibold">CheckOut Info</h1>
-      <form className=' flex flex-col gap-5' onSubmit={checkOutHandler}>
+      <h1 className=" text-2xl text-gray-700 font-semibold dark:text-white">
+        CheckOut Info
+      </h1>
+      <form className=" flex flex-col gap-5" onSubmit={checkOutHandler}>
         <div className=" flex justify-between">
-          <span className=" text-xl font-semibold text-gray-500">Phone</span>
+          <span className=" text-xl font-semibold text-gray-500 dark:text-white">
+            Phone
+          </span>
           <input
-          required
+            required
             type="text"
-            className=" border-2 border-violet-500 px-2 focus-visible:outline-none w-52"
+            className=" border-2 border-violet-500 dark:bg-gray-900 px-2 focus-visible:outline-none w-52"
             placeholder="09xxxxxxxxx"
           />
         </div>
 
         <div className=" flex justify-between">
-          <span className=" text-xl font-semibold text-gray-500">Address</span>
+          <span className=" text-xl font-semibold text-gray-500 dark:text-white">
+            Address
+          </span>
           <input
-          required
+            required
             type="text"
-            className=" border-2 border-violet-500 px-2 focus-visible:outline-none w-52"
+            className=" border-2 border-violet-500 dark:bg-gray-900 px-2 focus-visible:outline-none w-52"
             placeholder="Enter Your Address"
           />
         </div>
         <div className=" flex justify-between">
-          <span className=" text-xl font-semibold text-gray-500">
+          <span className=" text-xl font-semibold text-gray-500 dark:text-white">
             Payment Method
           </span>
-          <select required className="w-52 focus-visible:outline-none" name="" id="">
+          <select
+            required
+            className="w-52 focus-visible:outline-none dark:bg-gray-800 dark:text-white"
+            name=""
+            id=""
+          >
             <option value="">Banking</option>
             <option value="">KBZ pay</option>
             <option value="">AYA Banking</option>
@@ -94,9 +116,16 @@ const Payment = () => {
             <option value="">Wave pay</option>
           </select>
         </div>
-        <div className=" flex justify-end mt-5">
+        <div className=" flex justify-between mt-5">
           <button
-            type='submit'
+            type="button"
+            onClick={() => dispatch(REMOVE_ALL_CART())}
+            className=" text-white bg-red-500 px-5 py-2 rounded-2xl "
+          >
+            Remove All
+          </button>
+          <button
+            type="submit"
             className=" px-5 py-2 bg-violet-500 text-white rounded-2xl"
           >
             CheckOut

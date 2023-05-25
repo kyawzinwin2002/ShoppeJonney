@@ -8,9 +8,10 @@ import {
 import { Link } from "react-router-dom";
 import { BiDetail } from "react-icons/bi";
 import { BsCartPlus, BsFillCartPlusFill, BsTrash3Fill } from "react-icons/bs";
+import { AiFillStar } from "react-icons/ai";
 
 const FavoriteDetail = (props) => {
-  const { id, title, image, price } = props;
+  const { id, title, image, price,rating } = props;
   const dispatch = useDispatch();
 
   // {Cart}
@@ -35,11 +36,16 @@ const FavoriteDetail = (props) => {
         className=" pImg w-[175px] h-[200px] rounded-md"
         alt=""
       />
-      <h1 className=" text-xl text-gray-900 ">{title.substring(0, 15)}...</h1>
+      <h1 className=" text-xl text-gray-900 dark:text-violet-500 ">{title.substring(0, 15)}...</h1>
 
       <div className=" flex justify-between items-center">
-        <span>*****</span>
-        <p>${price}</p>
+        <div className=" flex gap-1 items-center">
+          <AiFillStar className=" text-yellow-500 text-2xl" />
+          <h1 className=" text-lg flex font-normal items-center dark:text-white gap-2">
+            {rating.rate}
+          </h1>
+        </div>
+        <p className=" font-medium dark:text-white">${price}</p>
       </div>
       <div className=" flex justify-end gap-3">
         <Link to={`/detail/${id}`}>

@@ -1,44 +1,42 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { BsFillCartPlusFill } from "react-icons/bs";
-import { BsCartPlus } from "react-icons/bs";
-import { BiDetail } from "react-icons/bi";
-import { AiOutlineHeart } from "react-icons/ai";
-import { AiFillHeart, AiFillStar } from "react-icons/ai";
-import { useDispatch, useSelector } from "react-redux";
-import { ADD_TO_CART, ADD_TO_FAVORITE, REMOVE_FROM_CART, REMOVE_FROM_FAVORITE } from "../redux/services/productSlice";
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { ADD_TO_CART, ADD_TO_FAVORITE, REMOVE_FROM_CART, REMOVE_FROM_FAVORITE } from '../redux/services/productSlice';
+import { BsCartPlus, BsFillCartPlusFill, BsStarFill } from 'react-icons/bs';
+import { AiFillHeart, AiFillStar, AiOutlineHeart } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
+import { BiDetail } from 'react-icons/bi';
 import "../css/Product.css"
-import { BsStarFill } from "react-icons/bs";
-const Product = (props) => {
-  const { id,title, image, price,rating } = props;
-  const dispatch = useDispatch()
 
-  // {Cart}
-  const cart = useSelector(state => state.productSlice.cart)
-  const sameItemFromCart = cart.find(item => item.id === id)
-  const addToCartHandler = () => {
-    dispatch(ADD_TO_CART(props))
-  }
-  const removeFromCartHandler= () => {
-    dispatch(REMOVE_FROM_CART(props))
-  }
+const CatDetail = (props) => {
+    const {image,title,rating,price,id} = props
+    const dispatch = useDispatch();
 
-  // {Favorite}
-  const favorite = useSelector(state =>  state.productSlice.favorite)
-  const sameItemFromFav = favorite.find(item => item.id === id)
-  const addFavoriteHandler = () => {
-    dispatch(ADD_TO_FAVORITE(props))
-  }
-  const removeFavoriteHandler = () => {
-    dispatch(REMOVE_FROM_FAVORITE(props))
-  }
+    // {Cart}
+    const cart = useSelector((state) => state.productSlice.cart);
+    const sameItemFromCart = cart.find((item) => item.id === id);
+    const addToCartHandler = () => {
+      dispatch(ADD_TO_CART(props));
+    };
+    const removeFromCartHandler = () => {
+      dispatch(REMOVE_FROM_CART(props));
+    };
+
+    // {Favorite}
+    const favorite = useSelector((state) => state.productSlice.favorite);
+    const sameItemFromFav = favorite.find((item) => item.id === id);
+    const addFavoriteHandler = () => {
+      dispatch(ADD_TO_FAVORITE(props));
+    };
+    const removeFavoriteHandler = () => {
+      dispatch(REMOVE_FROM_FAVORITE(props));
+    };
 
 
   return (
-    <div className="  flex flex-col gap-3 shadow-md   px-5 py-3 relative">
+    <div className="  flex flex-col gap-3 shadow-md  px-5 py-3 relative">
       <img
         src={image}
-        className="  pImg w-[175px] h-[200px] rounded-md"
+        className=" pImg w-[175px] h-[200px] rounded-md"
         alt=""
       />
       {sameItemFromFav && (
@@ -46,9 +44,7 @@ const Product = (props) => {
           <BsStarFill className=" text-white text-xl bg-violet-500 absolute bottom-1 left-1" />
         </div>
       )}
-      <h1 className=" text-xl text-gray-900 dark:text-violet-500">
-        {title.substring(0, 15)}...
-      </h1>
+      <h1 className=" text-xl text-gray-900 dark:text-violet-500">{title.substring(0, 15)}...</h1>
 
       <div className=" flex justify-between items-center">
         <div className=" flex gap-1 items-center">
@@ -107,6 +103,6 @@ const Product = (props) => {
       </div>
     </div>
   );
-};
+}
 
-export default Product;
+export default CatDetail

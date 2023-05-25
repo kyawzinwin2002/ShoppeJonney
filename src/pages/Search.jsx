@@ -17,10 +17,10 @@ const Search = () => {
       return (
         <div className="">
           <Navbar />
-          <div className=" flex w-screen h-screen justify-center items-center">
+          <div className=" flex w-screen h-screen dark:bg-gray-900 dark:text-white justify-center items-center">
             <div className=" flex flex-col items-center gap-5">
               <h1 className=" text-4xl text-red-500 font-bold">
-                Oops! We haven't that item.TT
+                Oops! We don't have that item.TT
               </h1>
               <Link to={"/shop"}>
                 <button className="px-6 py-2 text-xl bg-gray-500 text-white rounded-2xl">
@@ -35,7 +35,7 @@ const Search = () => {
       return (
         <div className="">
           <Navbar />
-          <div className=" flex w-screen h-screen flex-wrap justify-center py-10 gap-10 ">
+          <div className=" flex w-screen h-screen dark:bg-gray-900 dark:text-white flex-wrap justify-center py-10 gap-10 ">
             {searchedItem?.map((item) => {
               return <SearchDetail key={item?.id} {...item} />;
             })}

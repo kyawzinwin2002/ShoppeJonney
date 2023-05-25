@@ -1,13 +1,13 @@
 import React from 'react'
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
+import { AiFillHeart, AiFillStar, AiOutlineHeart } from 'react-icons/ai';
 import { BiDetail } from 'react-icons/bi';
-import { BsCartPlus, BsFillCartPlusFill } from 'react-icons/bs';
+import { BsCartPlus, BsFillCartPlusFill, BsStarFill } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ADD_TO_CART, ADD_TO_FAVORITE, REMOVE_FROM_CART, REMOVE_FROM_FAVORITE } from '../redux/services/productSlice';
-
+import "../css/Product.css"
 const SearchDetail = (props) => {
-    const {id,title,image,price} = props
+    const {id,title,image,price,rating} = props
      const dispatch = useDispatch();
 
      // {Cart}
@@ -30,16 +30,26 @@ const SearchDetail = (props) => {
        dispatch(REMOVE_FROM_FAVORITE(props));
      };
   return (
-    <div className="  flex flex-col gap-3 shadow-md  px-5 py-3">
+    <div className="  flex flex-col gap-3 shadow-md  px-5 py-3 relative">
       <img
         src={image}
         className=" pImg w-[175px] h-[200px] rounded-md"
         alt=""
       />
-      <h1 className=' text-xl text-gray-900 '>{title.substring(0,15)}...</h1>
+      {sameItemFromFav && (
+        <div className=" fav">
+          <BsStarFill className=" text-white text-xl bg-violet-500 absolute bottom-1 left-1" />
+        </div>
+      )}
+      <h1 className=" text-xl text-gray-900 dark:text-violet-500">{title.substring(0, 15)}...</h1>
       <div className=" flex justify-between items-center">
-        <span>*****</span>
-        <p>${price}</p>
+        <div className=" flex gap-1 items-center">
+          <AiFillStar className=" text-yellow-500 text-2xl" />
+          <h1 className=" text-lg flex font-normal items-center gap-2">
+            {rating.rate}
+          </h1>
+        </div>
+        <p className=" font-medium">${price}</p>
       </div>
       <div className=" flex justify-end gap-3">
         <Link to={`/detail/${id}`}>

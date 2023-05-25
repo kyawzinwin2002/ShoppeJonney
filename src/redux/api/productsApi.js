@@ -17,8 +17,17 @@ export const productsApi = createApi({
       }),
       providesTags: ["productsApi"],
     }),
-    
+    getProductsByCat: builder.query({
+      query: (category) => ({
+        url: `https://fakestoreapi.com/products/category/${category}`,
+      }),
+      providesTags: ["productsApi"],
+    }),
   }),
 });
 
-export const { useGetProductsQuery,useGetSingleProductQuery } = productsApi;
+export const {
+  useGetProductsQuery,
+  useGetSingleProductQuery,
+  useGetProductsByCatQuery,
+} = productsApi;

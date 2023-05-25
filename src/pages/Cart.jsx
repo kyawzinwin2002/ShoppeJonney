@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Navbar from '../components/Navbar/Navbar';
 import { Link } from 'react-router-dom';
 import { FaShopware } from 'react-icons/fa';
@@ -9,12 +9,13 @@ import { BsCart4 } from "react-icons/bs";
 
 const Cart = () => {
   const cart = useSelector(state => state.productSlice.cart)
-  console.log(cart);
+  const dispatch = useDispatch()
+  // console.log(cart);
   if(cart?.length === 0){
     return (
       <div>
         <Navbar />
-        <div className=" flex py-9 px-9 w-screen h-screen  items-start">
+        <div className=" flex py-9 px-9 w-screen h-[100%]  items-start dark:bg-gray-900 dark:text-white">
           <div className=" w-[60%] h-screen overflow-scroll pb-10  px-3">
             <div className="flex w-[100%] h-screen justify-center ">
               <div className=" flex flex-col items-center gap-5 mt-56">
@@ -30,7 +31,7 @@ const Cart = () => {
             </div>
           </div>
 
-          <div className=" w-[40%] flex justify-center items-start fixed right-0 top-20">
+          <div className=" w-[40%] flex justify-center items-start  fixed right-0 top-24">
             {/* {CheckOut} */}
             <Payment />
           </div>
@@ -39,9 +40,10 @@ const Cart = () => {
     );
   }
   return (
-    <div>
+    <div className=" flex flex-col gap-5 dark:bg-gray-900 dark:text-white">
       <Navbar />
-      <div className=" flex py-9 px-9 w-screen h-screen  items-start">
+
+      <div className=" flex py-9 px-9 w-screen h-[100%]  dark:bg-gray-900 dark:text-white items-start">
         <div className=" w-[60%] h-screen overflow-scroll pb-10  px-3">
           <div className=" flex flex-col gap-16 items-center ">
             {/* {Cart} */}
@@ -49,8 +51,6 @@ const Cart = () => {
               return <CartChild key={item?.id} {...item} />;
             })}
           </div>
-         
-          
         </div>
 
         <div className=" w-[40%] flex justify-center items-start fixed right-0 top-20">
